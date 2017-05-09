@@ -1,0 +1,3 @@
+[General]
+cookies="@Variant(\0\0\0\x7f\0\0\0\x16QList<QNetworkCookie>\0\0\0\0\x1\0\0\0\x6\0\0\0_bci=3001074462616186388; HttpOnly; expires=Sat, 22-Jul-2084 00:18:08 GMT; domain=.ok.ru; path=/\0\0\0gguid=332D721F57797DC1X1467579841; expires=Thu, 31-Dec-2037 23:55:55 GMT; domain=.tns-counter.ru; path=/\0\0\0]VID=1oaage1COWfT1NUNt100J26U; expires=Mon, 03-Jul-2017 21:00:00 GMT; domain=.yadro.ru; path=/\0\0\0^VID=1uxxzu3xSgnT0000040814XT::; expires=Tue, 04-Jul-2017 21:04:01 GMT; domain=.mail.ru; path=/\0\0\0\x61mrcu=3DCB57797DC1195A11DE5888D75B; expires=Wed, 01-Jul-2026 21:04:01 GMT; domain=.mail.ru; path=/\0\0\0L_flashVersion=0; expires=Tue, 02-Aug-2016 21:04:12 GMT; domain=ok.ru; path=/)"
+

@@ -1,0 +1,26 @@
+#!/bin/bash
+echo "Введите ссылку на цель"
+read target
+
+echo "Введите referer"
+read referer
+
+echo "Введите количество посещений"
+read count_visit
+
+echo "Введите количество потоков"
+read count_thread
+
+echo "Введите глубину посещения"
+read deep
+
+echo "Введите диапазон нахождения на сайте в секундах. Пример:(5-15)"
+read sleep_range
+
+count_visit=$(echo $count_visit / $count_thread | bc)
+
+for((i=0; i<$count_thread; i++))
+do
+	./thread $count_visit $target $referer $deep $sleep_range &
+done
+exit 0
