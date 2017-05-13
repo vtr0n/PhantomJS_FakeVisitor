@@ -5,6 +5,6 @@ read target
 echo "Введите referer"
 read referer
 
-./phantomjs --ignore-ssl-errors=true --web-security=false lite_visitor.js $target $referer
+phantomjs --ignore-ssl-errors=true --web-security=false lite_visitor.js $target $referer
 
 exit 0

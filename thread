@@ -14,7 +14,7 @@ do
 	cookie=$(ls files/cookies | shuf -n 1)
 	
 	#--proxy=$proxy --cookies-path=$cookie
-	./phantomjs --ignore-ssl-errors=true --web-security=false --proxy=$proxy --cookies-file=files/cookies/$cookie \
+	phantomjs --ignore-ssl-errors=true --web-security=false --proxy=$proxy --cookies-file=files/cookies/$cookie \
 	new_visitor.js $target $referer $ua $deep $resolution $sleep_range
 done
 exit 0
