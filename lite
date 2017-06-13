@@ -1,8 +1,8 @@
  #!/bin/bash
-echo "Введите ссылку на цель"
+echo "Enter target"
 read target
 
-echo "Введите referer"
+echo "Enter referer"
 read referer
 
 phantomjs --ignore-ssl-errors=true --web-security=false lite_visitor.js $target $referer
