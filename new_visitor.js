@@ -8,27 +8,31 @@ page.needDeep = system.args[4];
 page.resolution = system.args[5].split('x');
 page.sleep = system.args[6].split('-');
 
-page.settings.userAgent = page.userAgent; // Устанавливаем User Agent
-page.viewportSize = { // Устанавливаем размеры страницы
+page.settings.userAgent = page.userAgent; // Set User Agent
+page.viewportSize = { // Set page resolution
     width: page.resolution[0],
     height: page.resolution[1]
 };
 page.currentDeep = 1;
 
-var expectedContent = '<a id="link" href="' + page.target + '">link</a>'; // Подготавливаем ссылку для клика
+var expectedContent = '<a id="link" href="' + page.target + '">link</a>'; // set content on page
 var expectedLocation = page.referer;
-page.setContent(expectedContent, expectedLocation); // Наполняем страничку содержимым и Url
+page.setContent(expectedContent, expectedLocation); // set content on page
 
-page.onResourceRequested = function (requestData, networkRequest) {
+page.onResourceRequested = function (requestData, networkRequest) { // function to change http headers
+
     //console.log('Request (#' + requestData.id + '): ' + JSON.stringify(requestData));
     networkRequest.setHeader('User-Agent', page.userAgent);
+
+    // 1920*1080*24 - my default resolution. Change it to yours
     var newUrl = requestData.url.replace("1920*1080*24", page.resolution[0] + "*" + page.resolution[1] + "*" + page.resolution[2]);
 
+    // change resolution
     newUrl = newUrl.replace("1024", page.resolution[0]);
     newUrl = newUrl.replace("768", page.resolution[1]);
     newUrl = newUrl.replace("32-bit", page.resolution[2] + "-bit");
 
-    networkRequest.changeUrl(newUrl); // Меняем Url
+    networkRequest.changeUrl(newUrl); // change Url link
 };
 
 page.firstLoad = true;
@@ -37,12 +41,12 @@ page.onLoadFinished = function (status) {
     if (page.firstLoad) {
         page.firstLoad = page.evaluate(function () {
             console.log('Set Referer');
-            document.getElementById('link').click(); // Кликаем по созданной ссылке
+            document.getElementById('link').click(); // Click on href
             return false;
         });
     }
     else {
-        if (page.check) { // Да простит меня ассинхронность
+        if (page.check) { // Asynchrony, forgive me
             page.check = false;
             window.setInterval(function () {
                 page.currentDeep++;
@@ -59,8 +63,8 @@ page.onLoadFinished = function (status) {
                     parseUrl.href = target;
 
                     var needLinks = [];
-                    for(var i=0; i<document.links.length; i++) { // Выбираем только внутренние ссылки
-                        if(document.links[i].href.indexOf(parseUrl.hostname) !== -1)
+                    for (var i = 0; i < document.links.length; i++) { // only internal links
+                        if (document.links[i].href.indexOf(parseUrl.hostname) !== -1)
                             needLinks.push(document.links[i])
                     }
 
@@ -80,7 +84,7 @@ page.onLoadFinished = function (status) {
 
 function click(el) {
     var ev = document.createEvent("MouseEvent");
-    ev.initMouseEvent( // Выставляем параметры клика
+    ev.initMouseEvent( // set click params
         "click",
         true, true,
         window, null,
@@ -91,10 +95,10 @@ function click(el) {
     el.dispatchEvent(ev);
 }
 
-page.onConsoleMessage = function (msg) { // выводим лог внутри функций
+page.onConsoleMessage = function (msg) {
     console.log(msg);
 };
 
-var close = function () { // Для выхода из window.setInterval
+var close = function () { // exit in window.setInterval
     phantom.exit();
 };

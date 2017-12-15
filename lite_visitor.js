@@ -7,9 +7,9 @@ page.settings.userAgent = userAgent;
 
 var expectedContent = '<a id="link" href="' + url + '">link</a>';
 var expectedLocation = system.args[2];
-page.setContent(expectedContent, expectedLocation); // Наполняем страничку содержимым и url
+page.setContent(expectedContent, expectedLocation); // set content on page
 
-page.onResourceRequested = function (request, network) {
+page.onResourceRequested = function (request, network) { // function to change http headers
     network.setHeader('User-Agent', userAgent);
 };
 
@@ -30,7 +30,7 @@ page.onLoadFinished = function (status) {
 
 function click(el) {
     var ev = document.createEvent("MouseEvent");
-    ev.initMouseEvent( // Выставляем параметры клика
+    ev.initMouseEvent( // set click params
         "click",
         true, true,
         window, null,
@@ -41,6 +41,6 @@ function click(el) {
     el.dispatchEvent(ev);
 }
 
-page.onConsoleMessage = function (msg) { // выводим лог внутри функций
+page.onConsoleMessage = function (msg) { // bug fix to PJS
     console.log(msg);
 };
