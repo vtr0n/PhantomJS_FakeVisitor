@@ -5,13 +5,13 @@ page.target = system.args[1];
 page.referer = system.args[2];
 page.userAgent = atob(system.args[3]).trim();
 page.needDeep = system.args[4];
-page.resolution = system.args[5].split('x');
+page.new_resolution = system.args[5].split('x');
 page.sleep = system.args[6].split('-');
 
 page.settings.userAgent = page.userAgent; // Set User Agent
-page.viewportSize = { // Set page resolution
-    width: page.resolution[0],
-    height: page.resolution[1]
+page.viewportSize = { // Set page new_resolution
+    width: page.new_resolution[0],
+    height: page.new_resolution[1]
 };
 page.currentDeep = 1;
 
@@ -24,13 +24,13 @@ page.onResourceRequested = function (requestData, networkRequest) { // function 
     //console.log('Request (#' + requestData.id + '): ' + JSON.stringify(requestData));
     networkRequest.setHeader('User-Agent', page.userAgent);
 
-    // 1920*1080*24 - my default resolution. Change it to yours
-    var newUrl = requestData.url.replace("1920*1080*24", page.resolution[0] + "*" + page.resolution[1] + "*" + page.resolution[2]);
+    // 1920*1080*24 - my default PhantomJS resolution. Change it to yours
+    var newUrl = requestData.url.replace("1920*1080*24", page.new_resolution[0] + "*" + page.new_resolution[1] + "*" + page.new_resolution[2]);
 
-    // change resolution
-    newUrl = newUrl.replace("1024", page.resolution[0]);
-    newUrl = newUrl.replace("768", page.resolution[1]);
-    newUrl = newUrl.replace("32-bit", page.resolution[2] + "-bit");
+    // change new_resolution
+    newUrl = newUrl.replace("1920", page.new_resolution[0]);
+    newUrl = newUrl.replace("1080", page.new_resolution[1]);
+    newUrl = newUrl.replace("24-bit", page.new_resolution[2] + "-bit");
 
     networkRequest.changeUrl(newUrl); // change Url link
 };
