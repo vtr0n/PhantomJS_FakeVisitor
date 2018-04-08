@@ -1,7 +1,20 @@
 # PhantomJS_FakeVisitor
+### Install
+##### Debian based
+```bash
+sudo apt-get install phantomjs
+```
+##### Arch Linux
+```bash
+sudo pacman -S phantomjs
+```
+##### Other
+Download in [Official site](http://phantomjs.org/download.html).
 ### Usage
 ```bash
 ./start
 ```
+### Configurations
+You can set **Cookies**, **Proxy**, **Resolution** and **User Agent** in *files* directory.
 ### Screenshot
-![screen](https://user-images.githubusercontent.com/18473198/27092016-a1171b06-506a-11e7-9da5-b42752a280ee.png)
+![screen](https://hsto.org/webt/em/uy/y3/emuyy3nuwugquzffcknjzj5bgiy.png)
