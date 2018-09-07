@@ -2,11 +2,11 @@
 ### Install
 ##### Debian based
 ```bash
-sudo apt-get install phantomjs
+sudo apt-get install phantomjs bc
 ```
 ##### Arch Linux
 ```bash
-sudo pacman -S phantomjs
+sudo pacman -S phantomjs bc
 ```
 ##### OS X
 ```bash

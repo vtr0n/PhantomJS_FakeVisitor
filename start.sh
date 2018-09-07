@@ -24,7 +24,7 @@ max_timeout=$(echo "${max_sleep}*${count_thread}+3" | bc)
 
 for i in $(seq 1 ${count_thread})
 do
-    if [[ $(uname) -eq "Darwin" ]]
+    if [[ $(uname) == "Darwin" ]]
     then
 	    gtimeout ${max_timeout} ./thread.sh ${count_visit} ${target} ${referer} ${deep} ${sleep_range} &
 	else

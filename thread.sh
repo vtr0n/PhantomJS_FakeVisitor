@@ -7,7 +7,7 @@ sleep_range=$5
 
 for i in $(seq 1 ${count_visit})
 do
-    if [[ $(uname) -eq "Darwin"  ]]
+    if [[ $(uname) == "Darwin"  ]]
     then
         proxy=$(gshuf -n 1 files/proxy.txt)
         ua=$(gshuf -n 1 files/user-agent.txt | base64)
