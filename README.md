@@ -8,11 +8,15 @@ sudo apt-get install phantomjs
 ```bash
 sudo pacman -S phantomjs
 ```
+##### OS X
+```bash
+brew install coreutils phantomjs
+```
 ##### Other
 Download in [Official site](http://phantomjs.org/download.html).
 ### Usage
 ```bash
-./start
+./start.sh
 ```
 ### Configurations
 You can set **Cookies**, **Proxy**, **Resolution** and **User Agent** in *files* directory.
