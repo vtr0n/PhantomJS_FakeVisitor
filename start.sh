@@ -1,4 +1,12 @@
 #!/bin/bash
+
+os_name=$(uname)
+if [[ ${os_name} != "Linux" && ${os_name} != "Darwin" ]]
+then
+    echo "${os_name} is not support"
+    exit
+fi
+
 echo "Enter target"
 read target
 
@@ -20,15 +28,15 @@ read sleep_range
 count_visit=$(echo ${count_visit} / ${count_thread} | bc)
 
 max_sleep=$(echo ${sleep_range} | cut -d'-' -f2)
-max_timeout=$(echo "${max_sleep}*${count_thread}+3" | bc)
+timeout=$(echo "${max_sleep}*${count_visit}*${deep}" | bc)
 
 for i in $(seq 1 ${count_thread})
 do
-    if [[ $(uname) == "Darwin" ]]
+    if [[ ${os_name} == "Darwin" ]]
     then
-	    gtimeout ${max_timeout} ./thread.sh ${count_visit} ${target} ${referer} ${deep} ${sleep_range} &
+	    gtimeout ${timeout} ./thread.sh ${count_visit} ${target} ${referer} ${deep} ${sleep_range} ${i} &
 	else
-	    timeout ${max_timeout} ./thread.sh ${count_visit} ${target} ${referer} ${deep} ${sleep_range} &
+	    timeout ${timeout} ./thread.sh ${count_visit} ${target} ${referer} ${deep} ${sleep_range} ${i} &
 	fi
 done
 exit 0
